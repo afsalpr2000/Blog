@@ -1,0 +1,54 @@
+{% extends 'userpanel/user_base.html' %}
+{% load static %}
+{% block title %}
+    USERPANEL | VIEW BLOG 
+{% endblock %}
+{% block content %}
+
+<div style="background-color:rgb(241, 241, 235) ;">
+    <div>
+        <a style="margin-left: 575px;margin-top: 5px;" href="{% url 'userpanel:view_profile' blog.author.profile.id %}" class="btn btn-primary" >BY {{ blog.author }} </a>  
+        <h6><label style=" text-decoration: underline; text-transform: uppercase;text-decoration-thickness: 4px;font-style: inherit;margin-left: 530px;">on {{blog.created_at}}</label></h6>                    
+    </div>
+    <h2 style="text-align: center;background-color: black;margin-left: 150px ;margin-right: 120px;color: blanchedalmond;border-radius: 15px;" class="blog-title">{{blog.title}}</h2>
+    <div>
+        <img src="{{ blog.blog_image.url }}" alt="{{ blog.title }}" style="margin-left: 155px;width: 1000px;height: 500px;">
+    </div>
+    <div>
+        <p style="margin-left: 155px;margin-top: 30px;margin-right: 100px;font-style: oblique;font-size:larger;" class="blog-text">{{blog.content}}</p>
+    </div>
+    <!-- <div>
+        <h2 style="font-style: italic;text-align: center;text-decoration: underline;">COMMENT SECTION</h2> 
+    </div> -->
+    <div style="margin-left: 150px;margin-bottom: 50px;">
+        <label style="color: blue;"><h4>LEAVE A COMMENT</h4></label>
+        <form method="post" style="margin-right: 155px;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Submit Comment</button>
+        </form>
+    </div>
+    
+    <div style="margin-left: 150px;">
+        {% if comments %}
+            {% for comment in comments %}
+                <div style="margin-bottom: 5px; background-color: rgb(199, 199, 180); margin-right: 155px; border-radius: 15px; padding: 10px; display: flex; justify-content: space-between; align-items: center;" class="comment">
+                    <div style="width: 80ch; word-wrap: break-word;">
+                        <h4 style="margin-left: 30px;"><strong>{{ comment.comment }}</strong></h4>
+                        <p style="margin-left: 30px;"><strong>{{ comment.author.username }}:</strong> <small>Posted on {{ comment.created_at }}</small></p>
+                    </div>
+                    {% if comment.author == user %}
+                        <div>
+                            <a href="{% url 'userpanel:edit_comment' comment_id=comment.id blog_id=blog.id %}" class="btn btn-primary">EDIT</a>
+                            <a href="{% url 'userpanel:delete_comment' comment_id=comment.id blog_id=blog.id %}" class="btn btn-secondary">DELETE</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+        <p style="background-color: black;margin: 20px 20px ;border-radius: 15px;color: bisque;text-align: center;">No comments yet. Be the first to comment!</p>
+        
+    {% endif %}
+</div>
+    
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+USERPANEL | Add Blog
+{% endblock %}
+{% block content %}
+<h2 style="text-align: center;background-color: rgb(254, 254, 254); border: 15px;margin: 20px 20px;font-style: italic;">CREATE BLOG</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input style="margin-left: 575px;" type="submit" value="ADD BLOG" class="btn btn-primary"/>
+</form>
+
+{% endblock %}

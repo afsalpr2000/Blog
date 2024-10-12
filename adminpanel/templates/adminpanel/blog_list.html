@@ -1,0 +1,52 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+    ADMINPANEL | BLOG_LIST
+
+{% endblock %}
+
+{% block content %}
+<div class="row m-5">
+    <div class="col-9"></div>
+</div>
+<div class="row m-5">
+  {% for blog in blogs %}
+    <div class="col-3 m-5">
+        <div class="card" style="width: 18rem; height:500px ;border-radius: 15px; background-color: rgb(241, 241, 235) ;">
+            <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="..." width="250px" height="250px" style="border-radius: 15px;">
+            <div class="card-body">
+            <h5 style="font-style: italic;text-transform: uppercase;" class="card-title">{{ blog.title }}</h5>
+            <h6 style=" text-decoration: underline; text-transform: uppercase;text-decoration-thickness: 4px;font-style: inherit;">By {{ blog.author }} on {{blog.created_at}}</h6>
+            <p class="card-text">{{blog.content|slice:"0:120" }}... <br></p>
+               
+          
+            
+
+            <div class="admin-actions"> 
+                <div class="justify-content-center">
+                    <a style="margin-bottom: 15px;" href="{% url 'blog_view' blog_id=blog.id %}" class="btn btn-primary" >More</a>  
+                    {% if blog.status == 'published' %}
+                        <a href="{% url 'admin_blog_hide' blog_id=blog.id %}" class="btn btn-danger btn-sm">Hide Blog</a>
+                    {% else %}
+                        <a href="{% url 'admin_blog_show' blog_id=blog.id %}" class="btn btn-success btn-sm">Show Blog</a>
+                    {% endif %}
+                </div>
+
+                {% if blog.status == 'hidden' %}
+                    <span style="color: red;" class="badge badge-warning">Hidden</span>
+                {% endif %}  
+            </div>
+        </div>
+    </div>
+</div>
+
+  {% endfor %}
+</div>         
+               
+            
+
+  
+{% endblock %}

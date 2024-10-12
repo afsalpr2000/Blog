@@ -1,0 +1,35 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% load static %}
+{% block title %}
+     ADMINPANEL | HOME
+  
+{% endblock %}
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 mb-4">
+            <div class="card" style="margin-top: 70px; height: 350px; width: 600px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; background-image: url('{% static 'images/blogs.jpg' %}') ; background-size: cover; background-position: center ;">
+                <div class="card-body" style="width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: space-between; background-color: rgba(255, 255, 255, 0.8);">
+                    <h3 class="card-title" style="align-self: flex-start;margin-left: 250px;font-weight: 1000;">Blogs</h3>
+                    <h3>Total Blogs : {{ total_blogs }}</h3>
+                    <a href="{% url 'blog_list' %}" class="btn btn-primary" style="align-self: flex-end;">Continue</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 mb-4">
+            <div class="card" style="margin-top: 70px; height: 350px; width: 600px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; background-image: url('{% static 'images/users.jpg' %}'); background-size: cover; background-position: center;">
+                <div class="card-body" style="width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: space-between; background-color: rgba(255, 255, 255, 0.8);">
+                    <h3 class="card-title" style="align-self: flex-start;margin-left: 250px;font-weight: 1000;">Users</h3>
+                    <h3>Total Users : {{ total_users }}</h3>
+                    <a href="{% url 'user_list' %}" class="btn btn-primary" style="align-self: flex-end;">Continue</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

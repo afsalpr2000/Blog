@@ -1,0 +1,43 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+  {% block title %}
+
+    ADMINPANEL | USER_LIST
+
+  {% endblock %}
+
+  {% block content %}
+  <div class="user-list-wrapper">
+    <h2 style="text-align: center;font-style: italic;font-weight: 800;">Manage Users</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Profile Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles %}
+            <tr class="{% if user.is_blocked %}blocked-user{% else %}active-user{% endif %}">
+                <td>{{ profile.user.username }}</td>
+                <td>{{ profile.user.email }}</td>
+                <td>{{ profile.user.date_joined|date:"d-M-Y" }}</td>
+                <td class="actions">
+                    <a href="{% url 'view_user' profile.id %}" class="btn btn-primary btn-sm">View</a>
+                    {% if not profile.is_blocked %}
+                        <a href="{% url 'block_user' profile.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to block this user?')">Block</a>
+                    {% else %}
+                        <a href="{% url 'unblock_user' profile.id %}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to unblock this user?')">Unblock</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+               
+  {% endblock %}

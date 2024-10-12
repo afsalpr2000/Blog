@@ -1,0 +1,118 @@
+{% extends 'userpanel/user_base.html' %}
+{% load static %}
+{% block title %}
+    USERPANEL | EDIT PROFILE 
+{% endblock %}
+{% block content %}
+<h2 style="text-align: center;background-color: rgb(0, 0, 0); border: 15px;margin: 20px 20px;font-style: italic;color: white;border-radius: 15px;">EDIT PROFILE</h2>
+    
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" name="username" class="form-control" value="{{ username }}" readonly>
+        </div>
+
+        <div class="mb-3"></div>
+          <label for="email" class="form-label">Email</label>
+          <input type="Email" id="email" name="email" class="form-control" value="{{ email }}" >
+        </div>
+
+        {{ form.as_p }}
+        <!-- <table class="table-responsive p-5 m-3" height="500px" width="50%"> -->
+
+            <!-- <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" id="name" name="name" value="{{ name }}" required class="form-control"></td>
+            </tr> -->
+            <!-- <tr>
+                <td><label for="profile_description">Profile Description</label></td>
+                <td><textarea id="profile_description" name="profile_description" required class="form-control">{{ profile.description }}</textarea></td>
+            </tr> -->
+            <!-- <tr>
+                <td><label for="phone">Phone:</label></td>
+                <td><input type="number" id="phone" name="phone" value="{{ phone }}" required class="form-control"></td>
+            </tr> -->
+            <!-- <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" value="{{ email }}" required class="form-control"></td>
+            </tr> -->
+            <!-- <tr>
+                <td><label for="profile_image">Profile Image</label></td>
+                <td><input type="file" id="profile_image" name="profile_image"   class="form-control"></td>
+                <td colspan="2"><button style="background-color: red;" type="submit" class = "btn btn-primary">Remove Image</button></td>
+            </tr>
+            <tr>
+                <td><label for="id_image">ID PROOF</label></td>
+                <td><input type="file" id="id_image" name="id_image"   class="form-control"></td>
+                <td colspan="2"><button style="background-color: red;" type="submit" class = "btn btn-primary">Remove Image</button></td>
+            </tr>
+                      
+            <tr style="text-align: center;">
+                <td colspan="2"><input type="submit" class ="btn btn-primary" value="Update Details" /></td>
+            </tr>
+        
+        </table>
+      </form> -->
+
+
+
+
+
+
+
+
+    <!-- <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} -->
+        <!-- {{ form.as_p }} -->
+
+          <!-- <div class="mb-3">
+            {{ reg_form.first_name.label_tag }}
+            {{ reg_form.first_name }}
+          </div>
+
+          <div class="mb-3">
+            {{ reg_form.last_name.label_tag }}
+            {{ reg_form.last_name }}
+          </div>
+
+          <div class="mb-3">
+            {{ reg_form.username.label_tag }}
+            {{ reg_form.username }}
+          </div>
+
+          <div class="mb-3">
+            {{ reg_form.email.label_tag }}
+            {{ reg_form.email }}
+          </div>
+
+          <div class="mb-3">
+            {{ profile_form.profile_image.label_tag }}
+            {{ profile_form.profile_image }}
+          </div>
+
+          <div class="mb-3">
+            {{ profile_form.id_proof.label_tag }}
+            {{ profile_form.id_proof }}
+          </div>
+
+          <div class="mb-3">
+            {{ profile_form.phone.label_tag }}
+            {{ profile_form.phone }}
+          </div>
+
+          <div class="mb-3">
+            {{ profile_form.profile_desciption.label_tag }}
+            {{ profile_form.profile_description }}
+          </div> -->
+
+
+                   
+        <button type="submit"  class="btn btn-primary ">SUBMIT</button>
+        
+      </form> 
+
+
+
+{% endblock %}
