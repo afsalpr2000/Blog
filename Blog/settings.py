@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'sitevisitor',
     'userpanel',
     'adminlogin',
-    'widget_tweaks',
+    
 ]
 
 MIDDLEWARE = [
