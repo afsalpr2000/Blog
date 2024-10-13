@@ -1,0 +1,16 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+USERPANEL | DELETE COMMENTS
+{% endblock %}
+{% block content %}
+        
+    <!-- Content goes here -->
+    <h2 style="text-align: center;color: white; background-color: rgb(0, 0, 0); border: 15px;margin: 20px 20px;font-style: italic;border-radius: 15px;">DELETE COMMENT</h2>
+    <p><h3><strong> you sure you want to delete the comment "{{ comment.comment }}"?</strong></h3></p>
+    
+    <form method="post" style="margin-left: 500px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'userpanel:view_blog' blog_id=blog.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+   {% endblock %}

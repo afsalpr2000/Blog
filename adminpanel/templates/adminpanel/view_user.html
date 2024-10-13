@@ -1,0 +1,46 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+  ADMINPANEL | VIEW_USER
+
+{% endblock %}
+
+{% block content %}
+  <table style="width: 95%;background-color: black; border-radius: 15px;margin: 0 auto;">
+    <tr>
+        <td style="text-align: center;">
+            <div class="blog-card">
+                <img src="{{ profile.profile_image.url }}" alt="User Profile Picture" style="width: 250px; height: 250px; border-radius: 50%;">
+                <div style="width: 80ch; word-wrap: break-word;margin-left: 255px;" class="card-content">
+                  <h2 style="color: white;font-style: oblique;" class="blog-title"><strong>{{ profile.user.username }}</strong></h2>
+                  <p style="color: white;" class="blog-text"><strong>{{ profile.profile_description }}</strong></p>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<div style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; padding: 20px;">
+
+  <div style="margin-bottom: 100px;text-align: center;">
+      <h2 style="color: #333;text-decoration: underline;"><strong>Personal Information</strong></h2>
+      <p><strong>Name:</strong> <strong style="font-size: larger;font-style:oblique;">{{ profile.user.first_name }} {{ profile.user.last_name }}</strong></p>
+      <p><strong>Email:</strong> <strong style="font-size: larger;font-style:oblique;">{{ profile.user.email }}</strong></p>
+      <p><strong>Phone:</strong> <strong style="font-size: larger;font-style:oblique;">{{ profile.phone }}</strong></p>
+ 
+      <h3 style="color: #333;text-decoration: underline; "><strong>ID Proof</strong></h3>
+      <table style="width: 100%; margin-top: 10px;">
+          
+          <tr>
+              <td ><img src="{{ profile.id_proof.url }}" alt="Passport" style="height: 250px;width: 400px;border-radius: 15px;"></td>
+          </tr>
+      </table>
+  </div>
+
+</div>
+
+
+
+{% endblock %}

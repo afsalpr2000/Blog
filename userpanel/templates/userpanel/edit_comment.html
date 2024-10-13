@@ -1,0 +1,14 @@
+{% extends 'userpanel/user_base.html' %}
+{% load static %}
+{% block title %}
+    USERPANEL | EDIT COMMENT 
+{% endblock %}
+{% block content %}
+<h2 style="text-align: center;color: white; background-color: rgb(0, 0, 0); border: 15px;margin: 20px 20px;font-style: italic;border-radius: 15px;">EDIT COMMENT</h2>
+    <form style="margin-left: 100px;margin-right: 155px;" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button style="margin-left: 480px; " class="btn btn-primary" type="submit">Save</button>
+        <a href="{% url 'userpanel:view_blog' blog_id=blog.id %}" class="btn btn-secondary">BACK</a>
+    </form>
+{% endblock %}

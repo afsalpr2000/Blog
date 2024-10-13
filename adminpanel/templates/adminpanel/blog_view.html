@@ -1,0 +1,51 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+  ADMINPANEL | BLOG VIEW
+
+{% endblock %}
+
+{% block content %}
+<div style="background-color:rgb(241, 241, 235) ;">
+    <div>
+        <a style="margin-left: 575px;margin-top: 5px;" href="{% url 'view_user' blog.author.profile.id %}" class="btn btn-primary" >BY {{ blog.author }} </a>  
+        <h6><label style=" text-decoration: underline; text-transform: uppercase;text-decoration-thickness: 4px;font-style: inherit;margin-left: 530px;">on {{blog.created_at}}</label></h6>                    
+    </div>
+    <h2 style="text-align: center;background-color: black;margin-left: 150px ;margin-right: 120px;color: blanchedalmond;border-radius: 15px;" class="blog-title">{{blog.title}}</h2>
+    <div>
+        <img src="{{ blog.blog_image.url }}" alt="{{ blog.title }}" style="margin-left: 155px;width: 1000px;height: 500px;">
+    </div>
+    <div>
+        <p style="margin-left: 155px;margin-top: 30px;margin-right: 100px;font-style: oblique;font-size:larger;" class="blog-text">{{blog.content}}</p>
+    </div>
+    <div>
+        <h2 style="font-style: italic;text-align: center;text-decoration: underline;">COMMENTS</h2> 
+    </div>
+    
+    <div style="margin-left: 150px;">
+        {% if comments %}
+            {% for comment in comments %}
+                <div style="margin-bottom: 5px; background-color: rgb(33, 31, 31); margin-right: 155px; border-radius: 15px; padding: 10px; display: flex; justify-content: space-between; align-items: center;" class="comment">
+                    <div style="width: 80ch; word-wrap: break-word;">
+                        <h4 style="margin-left: 30px;color: white;"><strong>{{ comment.comment }}</strong></h4>
+                        <p style="margin-left: 30px;color: white;"><strong>{{ comment.author.username }}:</strong> <small>Posted on {{ comment.created_at }}</small></p>
+                    </div>
+                    <div class="admin-comment-actions">
+                        {% if comment.status == 'visible' %}
+                        <a href="{% url 'admin_comment_hide' comment_id=comment.id %}" class="btn btn-sm btn-outline-danger">Hide Comment</a>
+                        {% else %}
+                        <a href="{% url 'admin_comment_show' comment_id=comment.id %}" class="btn btn-sm btn-outline-success">Show Comment</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p style="background-color: black;margin: 20px 20px ;border-radius: 15px;color: bisque;text-align: center;">No comments yet.</p>
+        
+    {% endif %}
+</div>
+   
+{% endblock %}

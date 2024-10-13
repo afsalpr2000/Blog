@@ -1,0 +1,166 @@
+{% extends 'userpanel/user_base.html' %}
+{% load static %}
+{% block title %}
+    USERPANEL | MY BLOG 
+{% endblock %}
+{% block content %}
+
+<div class="row m-5">
+    <div style="margin-left: 475px;" class="col-12">
+        <button onclick="showPosts('draft')" class="btn btn-sm btn-outline-success">Drafts</button>
+        <button onclick="showPosts('published')" class="btn btn-sm btn-outline-success">Published</button>
+    </div>
+</div>
+
+<div id="draft-posts" style="display: none;">
+    {% if draft_posts %}
+    <div class="row m-5">
+        {% for blog in draft_posts %}
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 100%; height: 500px; border-radius: 15px; background-color: rgb(241, 241, 235)">
+                <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="..." style="border-radius: 15px; height: 250px;">
+                <div class="card-body">
+                    <h4 style="font-style: italic; text-transform: uppercase;" class="card-title">{{ blog.title }}</h4>
+                    <h6><label style="text-decoration: underline; text-transform: uppercase; text-decoration-thickness: 4px; font-style: inherit;">By {{ blog.author }} on {{ blog.created_at }}</label></h6>
+                    <p class="card-text">{{ blog.content|slice:"0:100" }}.... <br></p>
+                    <a href="{% url 'userpanel:view_blog' blog_id=blog.id %}" class="btn btn-primary" style="margin-bottom: 10px;">View More</a>
+                    <a href="{% url 'userpanel:edit_blog' blog_id=blog.id %}" class="btn btn-primary" style="margin-bottom: 10px; background-color: rgb(63, 36, 218);">EDIT</a>
+                    <a href="{% url 'userpanel:delete_blog' blog_id=blog.id %}" class="btn btn-secondary" style="margin-bottom: 10px;">DELETE</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row m-5">
+        <div class="col-12">
+            <div style="background-color: black;margin: 20px 20px ;border-radius: 15px;">
+                <h2 style="text-align: center;color: white;" class="pb-1 my-5">NO DRAFT BLOGS AVAILABLE</h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div id="published-posts" style="display: none;">
+    {% if published_posts %}
+    <div class="row m-5">
+        {% for blog in published_posts %}
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 100%; height: 500px; border-radius: 15px; background-color: rgb(241, 241, 235)">
+                <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="..." style="border-radius: 15px; height: 250px;">
+                <div class="card-body">
+                    <h4 style="font-style: italic; text-transform: uppercase;" class="card-title">{{ blog.title }}</h4>
+                    <h6><label style="text-decoration: underline; text-transform: uppercase; text-decoration-thickness: 4px; font-style: inherit;">By {{ blog.author }} on {{ blog.created_at }}</label></h6>
+                    <p class="card-text">{{ blog.content|slice:"0:100" }}.... <br></p>
+                    <a href="{% url 'userpanel:view_blog' blog_id=blog.id %}" class="btn btn-primary" style="margin-bottom: 10px;">View More</a>
+                    <a href="{% url 'userpanel:edit_blog' blog_id=blog.id %}" class="btn btn-primary" style="margin-bottom: 10px; background-color: rgb(63, 36, 218);">EDIT</a>
+                    <a href="{% url 'userpanel:delete_blog' blog_id=blog.id %}" class="btn btn-secondary" style="margin-bottom: 10px;">DELETE</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row m-5">
+        <div class="col-12">
+            <div style="background-color: black;margin: 20px 20px ;border-radius: 15px;">
+                <h2 style="text-align: center;color: white;" class="pb-1 my-5">NO PUBLISHED BLOGS AVAILABLE</h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function showPosts(status) {
+        document.getElementById('draft-posts').style.display = status === 'draft' ? 'block' : 'none';
+        document.getElementById('published-posts').style.display = status === 'published' ? 'block' : 'none';
+    }
+    // Optionally, set one section to be visible by default
+    showPosts('published');
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+{% if blogs %}
+<div class="row m-5">
+    <div class="col-9"></div>
+</div>
+<div class="row m-5">
+    {% for blog in blogs %}
+    <div class="col-3 m-5">
+        <div class="card" style="width: 320px; height:500px; border-radius: 15px; background-color: rgb(241, 241, 235) ">
+            <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="..." width="250px" height="250px" style="border-radius: 15px;">
+            <div class="card-body">
+            <h4 style="font-style: italic;text-transform: uppercase;" class="card-title">{{ blog.title }}</h4>
+            <h6><label style=" text-decoration: underline; text-transform: uppercase;text-decoration-thickness: 4px;font-style: inherit;">By {{ blog.author }} on {{blog.created_at}}</label></h6>
+            <p class="card-text">{{blog.content|slice:"0:100" }}.... <br></p>
+                        
+       
+        <a style="margin-bottom: 10px;" href="{% url 'userpanel:view_blog' blog_id=blog.id %}" class="btn btn-primary" >View More</a>  
+        <a style="margin-bottom: 10px;" href="{% url 'userpanel:edit_blog' blog_id=blog.id %}" class="btn btn-primary" style="background-color: rgb(63, 36, 218);">EDIT</a>
+        <a style="margin-bottom: 10px;" href="{% url 'userpanel:delete_blog' blog_id=blog.id %}" class="btn btn-secondary">DELETE</a>   
+            </div>
+        </div>
+    </div>
+  
+    {% endfor %}
+{% else %}
+    <div style="background-color: black;margin: 20px 20px ;border-radius: 15px;">
+        <h2 style="text-align: center;color: white;" class="pb-1 my-5">NO BLOGS POSTED</h2>
+    </div>
+
+{% endif %} -->
